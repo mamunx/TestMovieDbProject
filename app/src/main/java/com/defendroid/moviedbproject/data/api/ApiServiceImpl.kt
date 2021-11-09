@@ -1,5 +1,6 @@
 package com.defendroid.moviedbproject.data.api
 
+import ListResponse
 import Movie
 import com.defendroid.moviedbproject.utils.ApiUrls
 import com.rx2androidnetworking.Rx2AndroidNetworking
@@ -7,10 +8,10 @@ import io.reactivex.Single
 
 class ApiServiceImpl : ApiService {
 
-    override fun getNowPlaying(): Single<List<Movie>> {
+    override fun getNowPlaying(): Single<ListResponse> {
         return Rx2AndroidNetworking.get(ApiUrls.NOW_PLAYING_URL)
             .build()
-            .getObjectListSingle(Movie::class.java)
+            .getObjectSingle(ListResponse::class.java)
     }
 
     override fun getPopular(): Single<List<Movie>> {
