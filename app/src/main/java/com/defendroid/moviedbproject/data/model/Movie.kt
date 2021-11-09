@@ -1,7 +1,11 @@
+package com.defendroid.moviedbproject.data.model
+
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
-
     @SerializedName("poster_path") val poster_path: String,
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("overview") val overview: String,
@@ -16,4 +20,4 @@ data class Movie(
     @SerializedName("vote_count") val vote_count: Int,
     @SerializedName("video") val video: Boolean,
     @SerializedName("vote_average") val vote_average: Double
-)
+) : Parcelable

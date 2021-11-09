@@ -11,4 +11,6 @@ object AppConstants {
     const val LOGO_SIZE_SMALL = "w45"
     const val LOGO_SIZE_MEDIUM = "w185"
     const val LOGO_SIZE_LARGE = "w500"
+
+    const val KEY_SELECTED_MOVIE = "selected-movie"
 }

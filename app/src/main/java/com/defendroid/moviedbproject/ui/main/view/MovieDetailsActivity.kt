@@ -2,38 +2,32 @@ package com.defendroid.moviedbproject.ui.main.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.defendroid.moviedbproject.R
-import com.defendroid.moviedbproject.data.api.ApiHelper
-import com.defendroid.moviedbproject.data.api.ApiServiceImpl
-import com.defendroid.moviedbproject.ui.base.ViewModelFactory
-import com.defendroid.moviedbproject.ui.main.viewmodel.MovieViewModel
+import com.defendroid.moviedbproject.data.model.Movie
 import com.defendroid.moviedbproject.utils.AppConstants
+import com.defendroid.moviedbproject.utils.AppConstants.KEY_SELECTED_MOVIE
 import com.defendroid.moviedbproject.utils.getImageUrl
 import kotlinx.android.synthetic.main.activity_movie_details.*
 
-class MovieDetails : AppCompatActivity() {
-
-    private lateinit var movieViewModel: MovieViewModel
+class MovieDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
-        setupViewModel()
+        val movie: Movie? = intent.extras?.getParcelable(KEY_SELECTED_MOVIE)
 
-        movieViewModel.selectedMovieLiveData.value?.let {
+        movie?.let {
             Glide.with(iv_poster.context)
                 .load(getImageUrl(AppConstants.BACKDROP_SIZE_LARGE, it.backdrop_path))
                 .into(iv_poster)
-        }
-    }
 
-    private fun setupViewModel() {
-        movieViewModel = ViewModelProviders.of(
-            this,
-            ViewModelFactory(ApiHelper(ApiServiceImpl()))
-        ).get(MovieViewModel::class.java)
+            tv_movie_name.text = it.original_title
+            tv_release_date.text = it.release_date
+            tv_vote_count.text = it.vote_count.toString()
+            tv_rating.text = it.vote_average.toString()
+            tv_description.text = it.overview
+        }
     }
 }

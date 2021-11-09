@@ -1,6 +1,6 @@
 package com.defendroid.moviedbproject.ui.main.viewmodel
 
-import Movie
+import com.defendroid.moviedbproject.data.model.Movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

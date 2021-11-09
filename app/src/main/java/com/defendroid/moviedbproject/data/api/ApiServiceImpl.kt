@@ -1,7 +1,7 @@
 package com.defendroid.moviedbproject.data.api
 
 import ListResponse
-import Movie
+import com.defendroid.moviedbproject.data.model.Movie
 import com.defendroid.moviedbproject.utils.ApiUrls
 import com.rx2androidnetworking.Rx2AndroidNetworking
 import io.reactivex.Single

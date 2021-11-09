@@ -1,3 +1,4 @@
+import com.defendroid.moviedbproject.data.model.Movie
 import com.google.gson.annotations.SerializedName
 
 data class ListResponse(

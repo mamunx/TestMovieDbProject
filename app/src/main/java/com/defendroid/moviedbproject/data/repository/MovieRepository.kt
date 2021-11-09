@@ -1,7 +1,7 @@
 package com.defendroid.moviedbproject.data.repository
 
 import ListResponse
-import Movie
+import com.defendroid.moviedbproject.data.model.Movie
 import com.defendroid.moviedbproject.data.api.ApiHelper
 import io.reactivex.Single
 

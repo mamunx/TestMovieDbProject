@@ -5,7 +5,7 @@ plugins {
     id 'kotlin-kapt'
 }
 
-ext{
+ext {
     compiler_version = '3.0.0-beta6'
 }
 
