@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieDbProject">
         <activity
+            android:name=".ui.main.view.MovieDetails"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.view.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
