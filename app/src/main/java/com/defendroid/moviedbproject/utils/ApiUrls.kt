@@ -5,6 +5,8 @@ import com.defendroid.moviedbproject.utils.AppConstants.API_KEY
 object ApiUrls {
 
     const val BASE_URL = "https://api.themoviedb.org/3/"
+    const val IMAGE_BASE_URL = "http://image.tmdb.org/t/p/"
+
     const val MIDDLEWARE_MOVIE = "movie"
 
     const val NOW_PLAYING_URL = "$BASE_URL$MIDDLEWARE_MOVIE/now_playing?api_key=$API_KEY"
