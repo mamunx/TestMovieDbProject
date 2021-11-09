@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.defendroid.moviedbproject.R
 import com.defendroid.moviedbproject.utils.AppConstants
-import com.defendroid.moviedbproject.utils.Util
+import com.defendroid.moviedbproject.utils.getImageUrl
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieAdapter(
@@ -19,7 +19,7 @@ class MovieAdapter(
         fun bind(movie: Movie) {
             itemView.tv_movie_name.text = movie.original_title
             Glide.with(itemView.iv_avatar.context)
-                .load(Util.getImageUrl(AppConstants.LOGO_SIZE_MEDIUM, movie.poster_path))
+                .load(getImageUrl(AppConstants.LOGO_SIZE_MEDIUM, movie.poster_path))
                 .into(itemView.iv_avatar)
         }
     }

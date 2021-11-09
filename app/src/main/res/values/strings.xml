@@ -2,4 +2,7 @@
     <string name="app_name">MovieDbProject</string>
     <string name="app_title">ChillFlix</string>
     <string name="search_movies">Search movies</string>
+    <string name="vote_count">Vote Count</string>
+    <string name="rating">Rating</string>
+    <string name="description">Description</string>
 </resources>

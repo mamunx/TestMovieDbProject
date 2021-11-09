@@ -11,9 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieDbProject">
+
         <activity
             android:name=".ui.main.view.MovieDetails"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.main.view.MainActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.main.view.MainActivity"
             android:exported="true"

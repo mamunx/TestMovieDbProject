@@ -1,128 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:baselineAligned="false"
-    android:orientation="vertical"
-    tools:context=".ui.main.view.MovieDetails">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <data>
+
+        <import type="com.defendroid.moviedbproject.utils.UtilKt" />
+
+        <variable
+            name="viewModel"
+            type="com.defendroid.moviedbproject.ui.main.viewmodel.MovieViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:title="@string/app_title" />
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        tools:context=".ui.main.view.MovieDetails">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="vertical">
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="@string/app_title" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/backdropImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:scaleType="fitXY"
-                    android:src="@color/teal_200" />
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tv_movie_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="4dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="Spiderman : Gone with the wind!" />
-
-            <TextView
-                android:id="@+id/tv_genre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                tools:text="Drama   Action   Fantasy  Sci-Fi" />
-
-            <TextView
-                android:id="@+id/tv_release_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                tools:text="2016-08-03" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="horizontal">
+                android:baselineAligned="false"
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/ic_star" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_poster"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:scaleType="fitXY"
+                        tools:src="@color/teal_200" />
+                </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/tv_rating"
+                    android:id="@+id/tv_movie_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{viewModel.selectedMovieLiveData.original_title}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Spiderman : Gone with the wind!" />
+
+                <TextView
+                    android:id="@+id/tv_release_date"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{viewModel.selectedMovieLiveData.release_date}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="2016-08-03" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/vote_count"
+                        app:srcCompat="@drawable/ic_vote" />
+
+                    <TextView
+                        android:id="@+id/tv_vote_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:text="@{viewModel.selectedMovieLiveData.vote_count}"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        tools:text="16,408" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/rating"
+                        app:srcCompat="@drawable/ic_star" />
+
+                    <TextView
+                        android:id="@+id/tv_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:text="@{UtilKt.getString(viewModel.selectedMovieLiveData.vote_average)}"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        tools:text="8.5" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/description"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/bg_rect_border"
+                    android:padding="8dp"
+                    android:text="@{viewModel.selectedMovieLiveData.overview}"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    tools:text="8.5" />
+                    tools:text="Arthur Bishop thought he had put his murderous past behind him when his most formidable foe kidnaps the love of his life. Now he is forced to travel the globe to complete three impossible assassinations, and do what he does best, make them look like accidents." />
+
             </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="Description"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:padding="8dp"
-                android:background="@drawable/bg_rect_border"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                tools:text="Arthur Bishop thought he had put his murderous past behind him when his most formidable foe kidnaps the love of his life. Now he is forced to travel the globe to complete three impossible assassinations, and do what he does best, make them look like accidents." />
-
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</layout>

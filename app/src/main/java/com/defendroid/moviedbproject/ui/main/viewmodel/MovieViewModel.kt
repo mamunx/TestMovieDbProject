@@ -15,6 +15,8 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
     private val nowPlayingMovies = MutableLiveData<Resource<List<Movie>>>()
     private val compositeDisposable = CompositeDisposable()
 
+    var selectedMovieLiveData = MutableLiveData<Movie>()
+
     init {
         fetchNowPlayingMovies()
     }
@@ -45,5 +47,4 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
     fun getNowPlayingMovies(): LiveData<Resource<List<Movie>>> {
         return nowPlayingMovies
     }
-
 }
