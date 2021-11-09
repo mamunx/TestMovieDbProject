@@ -18,7 +18,6 @@ class MovieAdapter(
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
             itemView.tv_movie_name.text = movie.original_title
-            itemView.tv_movie_year.text = movie.release_date
             Glide.with(itemView.iv_avatar.context)
                 .load(Util.getImageUrl(AppConstants.LOGO_SIZE_MEDIUM, movie.poster_path))
                 .into(itemView.iv_avatar)

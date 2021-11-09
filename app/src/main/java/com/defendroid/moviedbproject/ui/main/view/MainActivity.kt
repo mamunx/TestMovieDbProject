@@ -6,8 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.defendroid.moviedbproject.R
 import com.defendroid.moviedbproject.data.api.ApiHelper
 import com.defendroid.moviedbproject.data.api.ApiServiceImpl
@@ -31,14 +30,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 3)
         adapter = MovieAdapter(arrayListOf())
-        recyclerView.addItemDecoration(
+        /*recyclerView.addItemDecoration(
             DividerItemDecoration(
                 recyclerView.context,
                 (recyclerView.layoutManager as LinearLayoutManager).orientation
             )
-        )
+        )*/
         recyclerView.adapter = adapter
     }
 
@@ -49,10 +48,12 @@ class MainActivity : AppCompatActivity() {
                     Status.SUCCESS -> {
                         progressBar.visibility = View.GONE
                         it.data?.let { users -> renderList(users) }
+                        search_view.visibility = View.VISIBLE
                         recyclerView.visibility = View.VISIBLE
                     }
                     Status.LOADING -> {
                         progressBar.visibility = View.VISIBLE
+                        search_view.visibility = View.GONE
                         recyclerView.visibility = View.GONE
                     }
                     Status.ERROR -> {
