@@ -4,33 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_500"
     tools:context=".ui.main.view.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSecondary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="@string/app_name" />
+        app:title="@string/app_name"
+        app:titleTextColor="?attr/colorOnSecondary" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
+    <LinearLayout
+        android:id="@+id/ll_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:gravity="end"
-        android:visibility="gone"
-        app:defaultQueryHint="@string/app_name"
-        app:queryHint="@string/search_movies"
-        tools:visibility="visible" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- <androidx.appcompat.widget.AppCompatImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:padding="4dp"
+             app:srcCompat="@android:drawable/ic_menu_search" />-->
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/search_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSecondary"
+            android:textColorHint="?attr/colorOnSecondary"
+            android:layout_weight="1"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="8dp"
+            android:hint="@string/search_movies"
+            android:visibility="gone"
+            app:defaultQueryHint="@string/app_name"
+            app:queryHint="@string/search_movies"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:tint="@color/red"
+            android:padding="4dp"
+            app:srcCompat="@android:drawable/ic_menu_send" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_view"
+        android:layout_below="@+id/ll_search"
         android:layout_marginTop="8dp"
         android:visibility="gone"
         tools:itemCount="5"

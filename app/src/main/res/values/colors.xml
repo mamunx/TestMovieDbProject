@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="trans">#00000000</color>
 
+    <color name="grey_500">#363636</color>
+    <color name="grey_700">#191919</color>
+
+    <color name="dark_maroon">#3D0000</color>
+    <color name="maroon">#950101</color>
+    <color name="red">#FF0000</color>
+
 </resources>
