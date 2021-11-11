@@ -45,6 +45,7 @@ class MovieAdapter(
     }
 
     fun addData(list: List<Movie>) {
+        movies.clear()
         movies.addAll(list)
     }
 

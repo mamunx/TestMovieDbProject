@@ -1,7 +1,6 @@
 package com.defendroid.moviedbproject.data.repository
 
 import ListResponse
-import com.defendroid.moviedbproject.data.model.Movie
 import com.defendroid.moviedbproject.data.api.ApiHelper
 import io.reactivex.Single
 
@@ -11,11 +10,11 @@ class MovieRepository(private val apiHelper: ApiHelper) {
         return apiHelper.getNowPlaying()
     }
 
-    fun getPopular(): Single<List<Movie>> {
-        return apiHelper.getPopular()
-    }
-
-    fun getUpcoming(): Single<List<Movie>> {
-        return apiHelper.getUpcoming()
+    fun searchMovies(
+        searchQuery: String,
+        includeAdult: Boolean = false,
+        year: Int?
+    ): Single<ListResponse> {
+        return apiHelper.searchMovies(searchQuery, includeAdult, year)
     }
 }

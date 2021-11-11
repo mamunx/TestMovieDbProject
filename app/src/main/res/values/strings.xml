@@ -4,4 +4,6 @@
     <string name="vote_count">Vote Count</string>
     <string name="rating">Rating</string>
     <string name="description">Description</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="search_result">Search Results</string>
 </resources>

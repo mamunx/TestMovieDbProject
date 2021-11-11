@@ -13,4 +13,10 @@ object AppConstants {
     const val LOGO_SIZE_LARGE = "w500"
 
     const val KEY_SELECTED_MOVIE = "selected-movie"
+
+    const val MOVIE = "movie"
+    const val SEARCH = "search"
+    const val QUERY = "query"
+    const val INCLUDE_ADULT = "include_adult"
+    const val YEAR = "year"
 }
