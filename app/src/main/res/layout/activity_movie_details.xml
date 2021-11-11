@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorPrimary"
     android:baselineAligned="false"
     android:orientation="vertical"
     tools:context=".ui.main.view.MovieDetailsActivity">
@@ -36,8 +37,8 @@
                     android:id="@+id/iv_poster"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:scaleType="fitXY"
-                    tools:src="@color/teal_200" />
+                    android:scaleType="center"
+                    tools:src="@drawable/ic_error" />
             </RelativeLayout>
 
             <TextView
@@ -50,7 +51,7 @@
                 android:layout_marginBottom="4dp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="Spiderman : Gone with the wind!" />
@@ -62,7 +63,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="16sp"
                 tools:text="2016-08-03" />
 
@@ -88,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="16sp"
                     tools:text="16,408" />
             </LinearLayout>
@@ -115,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/black"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="16sp"
                     tools:text="8.5" />
             </LinearLayout>
@@ -127,7 +128,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/description"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -138,7 +139,7 @@
                 android:layout_margin="8dp"
                 android:background="@drawable/bg_rect_border"
                 android:padding="8dp"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSecondary"
                 android:textSize="16sp"
                 tools:text="Arthur Bishop thought he had put his murderous past behind him when his most formidable foe kidnaps the love of his life. Now he is forced to travel the globe to complete three impossible assassinations, and do what he does best, make them look like accidents." />
 
