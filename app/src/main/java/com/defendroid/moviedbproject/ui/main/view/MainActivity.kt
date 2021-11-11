@@ -1,5 +1,6 @@
 package com.defendroid.moviedbproject.ui.main.view
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -17,17 +18,17 @@ import com.defendroid.moviedbproject.ui.base.ItemClickListener
 import com.defendroid.moviedbproject.ui.base.ViewModelFactory
 import com.defendroid.moviedbproject.ui.main.adapter.MovieAdapter
 import com.defendroid.moviedbproject.ui.main.viewmodel.MovieViewModel
+import com.defendroid.moviedbproject.utils.*
 import com.defendroid.moviedbproject.utils.AppConstants.KEY_SELECTED_MOVIE
-import com.defendroid.moviedbproject.utils.ScreenState
-import com.defendroid.moviedbproject.utils.Status
-import com.defendroid.moviedbproject.utils.setAppBarTitle
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_search.*
 
 
 class MainActivity : AppCompatActivity(), ItemClickListener {
 
     private lateinit var movieViewModel: MovieViewModel
     private lateinit var adapter: MovieAdapter
+    private var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     private fun setupObserver() {
 
         movieViewModel.screenState.observe(this, {
-            when(it){
+            when (it) {
                 ScreenState.NOW_SHOWING -> {
                     setAppBarTitle(
                         toolbar,
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
                         getString(R.string.app_name)
                     )
 
-                    movieViewModel.getNowPlayingMovies().value?.data?.let { movies->
+                    movieViewModel.getNowPlayingMovies().value?.data?.let { movies ->
                         renderList(movies)
                     }
                 }
@@ -98,6 +99,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
                     it.data?.let { movies ->
                         renderList(movies)
                     }
+                    dialog?.dismiss()
                     recyclerView.visibility = View.VISIBLE
                 }
                 Status.LOADING -> {
@@ -141,12 +143,65 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_searach -> {
-                //todo open dialog
-                movieViewModel.screenState.value = ScreenState.SEARCH
-                movieViewModel.searchMovies("Eternals", true, 2021)
+                showSearchDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showSearchDialog() {
+        dialog = Dialog(this)
+        dialog?.setCancelable(false)
+        dialog?.setContentView(R.layout.dialog_search)
+
+        dialog?.iv_close?.setOnClickListener {
+            dialog?.dismiss()
+        }
+
+        dialog?.buttonSearch?.setOnClickListener {
+
+            val searchQuery = dialog?.et_query?.text ?: ""
+            val showAdultResults = dialog?.switchAdult?.isChecked ?: false
+            val yearString = getInt(dialog?.et_year?.text)
+
+            if (isSearchInputsValid(searchQuery, yearString)) {
+                movieViewModel.screenState.value = ScreenState.SEARCH
+                movieViewModel.searchMovies(searchQuery.toString(), showAdultResults, yearString)
+            }
+        }
+        dialog?.show()
+    }
+
+    private fun isSearchInputsValid(searchQuery: CharSequence, year: Int?): Boolean {
+        when {
+            searchQuery.isBlank() -> {
+                Toast.makeText(
+                    this,
+                    getString(R.string.search_query_error),
+                    Toast.LENGTH_LONG
+                ).show()
+                return false
+            }
+
+            year == null -> {
+                Toast.makeText(
+                    this,
+                    getString(R.string.year_invalid_message),
+                    Toast.LENGTH_LONG
+                ).show()
+                return false
+            }
+
+            !isYearValid(year) -> {
+                Toast.makeText(
+                    this,
+                    getString(R.string.year_invalid_message),
+                    Toast.LENGTH_LONG
+                ).show()
+                return false
+            }
+            else -> return true
         }
     }
 

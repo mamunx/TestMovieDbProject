@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="trans">#00000000</color>
 
+    <color name="hint_color">#939393</color>
+
     <color name="grey_500">#363636</color>
     <color name="grey_700">#191919</color>
 

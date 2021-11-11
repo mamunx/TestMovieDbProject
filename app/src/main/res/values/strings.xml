@@ -6,4 +6,10 @@
     <string name="description">Description</string>
     <string name="now_playing">Now Playing</string>
     <string name="search_result">Search Results</string>
+    <string name="filter_movies">Select your filter!</string>
+    <string name="show_adult_results">Show adult results?</string>
+    <string name="search_query">Search query (Required)</string>
+    <string name="enter_year_optional">Enter year (Optional)</string>
+    <string name="search_query_error">Search Query required.</string>
+    <string name="year_invalid_message">Year invalid!</string>
 </resources>
