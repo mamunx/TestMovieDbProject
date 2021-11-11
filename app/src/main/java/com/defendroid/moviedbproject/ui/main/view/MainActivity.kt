@@ -56,6 +56,10 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
                         getString(R.string.now_playing),
                         getString(R.string.app_name)
                     )
+
+                    movieViewModel.getNowPlayingMovies().value?.data?.let { movies->
+                        renderList(movies)
+                    }
                 }
                 ScreenState.SEARCH -> {
                     setAppBarTitle(

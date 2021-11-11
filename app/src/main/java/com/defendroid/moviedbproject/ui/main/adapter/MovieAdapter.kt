@@ -1,12 +1,12 @@
 package com.defendroid.moviedbproject.ui.main.adapter
 
-import com.defendroid.moviedbproject.data.model.Movie
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.defendroid.moviedbproject.R
+import com.defendroid.moviedbproject.data.model.Movie
 import com.defendroid.moviedbproject.ui.base.ItemClickListener
 import com.defendroid.moviedbproject.utils.AppConstants
 import com.defendroid.moviedbproject.utils.getImageUrl
@@ -20,8 +20,12 @@ class MovieAdapter(
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie, clickListener: ItemClickListener?) {
             itemView.tv_movie_name.text = movie.original_title
+
+            val imagePath: String = movie.poster_path ?: (movie.backdrop_path ?: "")
+
             Glide.with(itemView.iv_avatar.context)
-                .load(getImageUrl(AppConstants.LOGO_SIZE_MEDIUM, movie.poster_path))
+                .load(getImageUrl(AppConstants.LOGO_SIZE_MEDIUM, imagePath))
+                .error(R.drawable.ic_error)
                 .into(itemView.iv_avatar)
 
             itemView.setOnClickListener {

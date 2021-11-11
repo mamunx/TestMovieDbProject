@@ -3,6 +3,7 @@ package com.defendroid.moviedbproject.ui.main.view
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 import com.bumptech.glide.Glide
 import com.defendroid.moviedbproject.R
 import com.defendroid.moviedbproject.data.model.Movie
@@ -10,9 +11,6 @@ import com.defendroid.moviedbproject.utils.AppConstants
 import com.defendroid.moviedbproject.utils.AppConstants.KEY_SELECTED_MOVIE
 import com.defendroid.moviedbproject.utils.getImageUrl
 import kotlinx.android.synthetic.main.activity_movie_details.*
-import androidx.core.app.NavUtils
-
-
 
 
 class MovieDetailsActivity : AppCompatActivity() {
@@ -27,8 +25,12 @@ class MovieDetailsActivity : AppCompatActivity() {
         val movie: Movie? = intent.extras?.getParcelable(KEY_SELECTED_MOVIE)
 
         movie?.let {
+
+            val imagePath: String = movie.backdrop_path ?: (movie.poster_path ?: "")
+
             Glide.with(iv_poster.context)
-                .load(getImageUrl(AppConstants.BACKDROP_SIZE_LARGE, it.backdrop_path))
+                .load(getImageUrl(AppConstants.BACKDROP_SIZE_LARGE, imagePath))
+                .error(R.drawable.ic_error)
                 .into(iv_poster)
 
             tv_movie_name.text = it.original_title
@@ -42,7 +44,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
-                NavUtils.navigateUpFromSameTask(this)
+                onBackPressed()
                 true
             }
             else -> super.onOptionsItemSelected(item)
